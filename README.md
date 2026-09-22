@@ -1,4 +1,4 @@
-# Master Branch:
+# Develop Branch
 
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/Ben-Whetstone/SEMCode/develop)
 
@@ -8,5 +8,4 @@
 
 [![Releases](https://img.shields.io/github/release/Ben-Whetstone/devops/all.svg?style=flat-square)](https://github.com/Ben-Whetstone/devops/releases)
 
-# Develop Branch
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Ben-Whetstone/SEMCode/main.yml?branch=develop&style=flat-square)
