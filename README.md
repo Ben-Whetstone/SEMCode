@@ -1,4 +1,4 @@
-Main workflow badges:
+# Master Branch:
 
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/Ben-Whetstone/SEMCode/master)
 
@@ -10,5 +10,5 @@ Main workflow badges:
 
 Develop workflow badges:
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Ben-Whetstone/SEMCode/main.yml?branch=develop)
-
+# Develop Branch
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Ben-Whetstone/SEMCode/main.yml?branch=develop&style=flat-square)
