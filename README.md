@@ -8,7 +8,5 @@
 
 [![Releases](https://img.shields.io/github/release/Ben-Whetstone/devops/all.svg?style=flat-square)](https://github.com/Ben-Whetstone/devops/releases)
 
-Develop workflow badges:
-
 # Develop Branch
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Ben-Whetstone/SEMCode/main.yml?branch=develop&style=flat-square)
