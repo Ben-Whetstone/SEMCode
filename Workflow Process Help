@@ -1,0 +1,13 @@
+This is our current workflow. This is an important set of steps so document them:
+
+1) Pull the latest DEVELOP branch.
+2) Start a new FEATURE branch.
+3) Once FEATURE is finished, create JAR file.
+4) Update and test Docker configuration with GitHub Actions.
+5) Update FEATURE branch with DEVELOP to ensure FEATURE is up-to-date.
+6) Check FEATURE branch still works.
+7) Merge FEATURE branch into DEVELOP.
+8) Repeat 2-7 until RELEASE is ready.
+
+9) Merge DEVELOP branch into RELEASE and create RELEASE.
+10) Merge RELEASE into MASTER and DEVELOP.
