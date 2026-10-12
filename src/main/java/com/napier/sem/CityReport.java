@@ -8,49 +8,63 @@ import java.sql.*;
 // - District.
 // - Population.
 
-public class   CityReport {
+public class CityReport {
 
-    public void displayreportDesc(Connection con) { //All the cities in the world organised by largest population to smallest.
+    public void cityreportdesc(Connection con) { //All the cities in the world organised by population
         try {
-            // create an SQL statement
-            Statement stmt = con.createStatement();
-
-            // create string for SQL statement
-            String strSelect =
+            Statement stmt = con.createStatement();//create SQL statement
+            String strSelect =//create string that holds SQL query
                     "SELECT city.Name, country.Name AS Country, city.District, city.Population "
                             + "FROM city "
                             + "JOIN country ON city.CountryCode = country.Code "
                             + "ORDER BY city.Population DESC;";
 
-            // execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
+            ResultSet rset = stmt.executeQuery(strSelect);//execute the SQL statement, rset holds the rows that the database sends back
 
-            //print out the intial header with appropriate spacing
-            System.out.println("                             City Population Report                               ");
-            System.out.println("==================================================================================");
-            System.out.printf("%-30s | %-25s | %-20s | %-15s%n", "Name", "Country", "District", "Population");
-
-            //start a while loop that extracts and prints data from the database with correct spacing
-            while (rset.next()) {
-
-                String cityName = rset.getString("Name");
-                String countryName = rset.getString("Country");
-                String district = rset.getString("District");
-                int population = rset.getInt("Population");
-
-                System.out.printf("%-30s | %-25s | %-20s | %,d%n", cityName, countryName, district, population);
+            System.out.println("Name / Country / District / Population");//print out header
+            while (rset.next()) {//use while loop to print out all the data
+                System.out.println(
+                        rset.getString("Name") + " " +
+                                rset.getString("Country") + " " +
+                                rset.getString("District") + " " +
+                                rset.getInt("Population")
+                );
             }
-
-
         }
-        //to report on any errors
-        catch (Exception e) {
+        catch (Exception e) {//display error message
             System.out.println(e.getMessage());
             System.out.println("Failed to get city report details");
         }
     }
-    public static void main(String[] args){
 
+    public void cityreportcontinent(Connection con, String continent) { //All cities in a given continent
+        try {
+            Statement stmt = con.createStatement();//create SQL statement
+            String strSelect =//create string that holds SQL query
+                    "SELECT city.Name, country.Name AS Country, city.District, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.CountryCode = country.Code "
+                            + "WHERE country.Continent = " + "'" + continent + "'"
+                            + "ORDER BY city.Population DESC;";
+
+            ResultSet rset = stmt.executeQuery(strSelect);//execute SQL statement, rset holds the rows that the database sends back
+
+            System.out.println("City Population Report for: " + continent);//print out header
+            System.out.println("Name / Country / District / Population");
+            while (rset.next()) {//use while loop to print out all the data
+                System.out.println(rset.getString("Name") + " " +
+                                rset.getString("Country") + " " +
+                                rset.getString("District") + " " +
+                                rset.getInt("Population")
+                );
+            }
+        }
+        catch (Exception e) {//display error message
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get continent city report details");
+        }
     }
 
+    public static void main(String[] args) {
+    }
 }
