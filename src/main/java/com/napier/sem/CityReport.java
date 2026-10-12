@@ -23,8 +23,7 @@ public class CityReport {
 
             System.out.println("Name / Country / District / Population");//print out header
             while (rset.next()) {//use while loop to print out all the data
-                System.out.println(
-                        rset.getString("Name") + " " +
+                System.out.println(rset.getString("Name") + " " +
                                 rset.getString("Country") + " " +
                                 rset.getString("District") + " " +
                                 rset.getInt("Population")
