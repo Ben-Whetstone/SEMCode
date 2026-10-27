@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class App
 {
-    private Connection con = null;
+    public Connection con = null;
 
     public void connect()
     {
@@ -56,10 +56,16 @@ public class App
         }
     }
 
+
+
     public static void main(String[] args)
     {
         App a = new App();
         a.connect();
+
+        //Calls CapitalCityReport class (located in CapitalCityReport.java)
+        //
+        CapitalCityReport.print(a.con);
         a.disconnect();
     }
 }
