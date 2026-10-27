@@ -10,4 +10,15 @@ package com.napier.sem;
 // - Capital.
 
 public class CountryReport {
+    public void CountriesLargeToSmall() {
+        
+    }
+
+    public void CountriesInContinentLargeToSmall() {
+
+    }
+
+    public void CountriesInRegionLargeToSmall() {
+
+    }
 }
