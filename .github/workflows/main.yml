@@ -8,16 +8,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
       - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Setup network
+
+      - name: Setup database
         run: |
           docker network create --driver bridge se-methods
-          docker pull mongo
-          docker run -d --name mongo-dbserver --network se-methods mongo
+          docker pull mysql:8
+          docker run -d \--name db --network se-methods
+
       - name: Build with Maven
         run: mvn package
       - name: Build
