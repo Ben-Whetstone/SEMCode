@@ -16,36 +16,42 @@ package com.napier.sem;
 
 import java.sql.*;
 
-public class CapitalCityReport
-{
+public class CapitalCityReport {
     //Connection - database connection passed in from App.
-    public static void print(Connection con)
-    {
-        //Try/catch validation to handle SQLExceptions
-        try
-        {
-            //Statement - sends SQL to the database
-            Statement statement = con.createStatement();
+    public static void print(Connection con) {
+        run(con, "Capital City Report: all capital cities in the world organised by population",
+                "SELECT city.Name, country.Name, city.Population "
+                        + "FROM country JOIN city ON country.Capital = city.ID "
+                        + "ORDER BY city.Population DESC");
 
-            //ResultSet - holds rows the database sends back
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population AS Population "
-                            + "FROM country "
-                            + "JOIN city ON country.Capital = city.ID "
-                            + "ORDER BY city.Population DESC");
+        run (con, "Capital City Report: all capital cities in a continent organised by population",
+                "SELECT city.Name, country.Name, city.Population "
+                    + "FROM country JOIN city ON country.Capital = city.ID "
+                    + "WHERE country.Continent = 'Europe' "
+                    + "ORDER BY city.Population DESC");
 
-            System.out.println("Capital / Country / Population");
-            while (resultSet.next())
-            {
-                System.out.println(resultSet.getString("CapitalName") + " " + resultSet.getString("CountryName") + " " + resultSet.getInt("Population"));
+        run (con, "Capital City Report: all capital cities in a region organised by population",
+                "SELECT city.Name, country.Name, city.Population "
+                    + "FROM country JOIN city ON country.Capital = city.ID "
+                    + "WHERE country.Region = 'Central America' "
+                    + "ORDER BY city.Population DESC");
+
+    }
+
+    private static void run(Connection con, String title, String sql) {
+        System.out.println("\n" + title);
+        System.out.println("Capital / Country / Population");
+
+        try (Statement statement = con.createStatement();
+             ResultSet resultset = statement.executeQuery(sql)) {
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1) + " "
+                        + resultset.getString(2) + " "
+                        + resultset.getInt(3));
             }
-        }
-        //
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 }
-
 //Info about Java Database Connectivity
