@@ -18,8 +18,8 @@ jobs:
       - name: Setup database
         run: |
           docker network create --driver bridge se-methods
-          docker pull mysql:8
-          docker run -d \--name db --network se-methods
+          docker build -t world-db ./db
+          docker run -d \--name db --network se-methods world-db
 
       - name: Build with Maven
         run: mvn package
