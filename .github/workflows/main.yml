@@ -1,4 +1,4 @@
-name: Build and testing SEMCode
+name: Build and testing SEMCode.
 on: push
 
 jobs:
