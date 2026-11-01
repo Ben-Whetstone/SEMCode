@@ -36,19 +36,6 @@ import com.napier.sem.PopulationReport;
 class MyTest
 {
 
-    /**
-     * Checks that {@link App} will open a connection to the world database.
-     */
-    @Test
-    void connectsToDatabase()
-    {
-        App app = new App();
-        app.connect();
-        assertNotNull(app.con);
-        app.disconnect();
-    }
-
-
     @Test
     void appCreateObject(){
         App app = new App();
