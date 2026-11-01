@@ -38,6 +38,27 @@ public class CapitalCityReport {
 
     }
 
+    public static void topWorldN(Connection con, int n){
+        run(con, "Top " + n + " populated capital cities in the world",
+                "SELECT city.Name, country.Name, city.Population "
+                    + "FROM country JOIN city ON country.Capital = city.ID "
+                    + "ORDER BY city.Population DESC LIMIT " + n);
+    }
+    public static void topContinentN(Connection con, String continent, int n){
+        run(con, "Top " + n + " populated capital cities in " + continent,
+                "SELECT city.Name, country.Name, city.Population "
+                        + "FROM country JOIN city ON country.Capital = city.ID "
+                        + "WHERE country.Continent = '" + continent + "' "
+                        + "ORDER BY city.Population DESC LIMIT " + n);
+    }
+    public static void topRegionN(Connection con, String region, int n){
+        run(con, "Top " + n + " populated capital cities in a " + region,
+                "SELECT city.Name, country.Name, city.Population "
+                        + "FROM country JOIN city ON country.Capital = city.ID "
+                        + "WHERE country.Region = '" + region + "' "
+                        + "ORDER BY city.Population DESC LIMIT " + n);
+    }
+
     private static void run(Connection con, String title, String sql) {
         System.out.println("\n" + title);
         System.out.println("Capital / Country / Population");

@@ -1,8 +1,37 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
+import com.napier.sem.App;
+import com.napier.sem.CapitalCityReport;
+import com.napier.sem.CityReport;
+import com.napier.sem.CountryReport;
+import com.napier.sem.LanguageReport;
+import com.napier.sem.PopulationQueries;
+import com.napier.sem.PopulationReport;
+/**
+ * Unit tests for classes in com.napier.sem.
+ *
+ * @see App
+ * @see CapitalCityReport
+ * @see CityReport
+ * @see CountryReport
+ * @see LanguageReport
+ * @see PopulationQueries
+ * @see PopulationReport
+ *
+ */
+
 class MyTest
 {
+
+    @Test
+    void appCreateObject(){
+        App app = new App();
+        assertNotNull(app);
+    }
+
     @Test
     void unitTest()
     {
@@ -61,7 +90,7 @@ class MyTest
         assertNotNull("Hello");
     }
 
-    //illustrates how to test if a method throws an exception. 
+    //illustrates how to test if a method throws an exception.
     //By default, any exception thrown fails a test if no assertThrows matches.
     @Test
     void unitTest9()

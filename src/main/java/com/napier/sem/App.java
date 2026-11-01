@@ -64,8 +64,11 @@ public class App
         a.connect();
 
         //Calls CapitalCityReport class (located in CapitalCityReport.java)
-        //
         CapitalCityReport.print(a.con);
+
+        CapitalCityReport.topWorldN(a.con, 5);
+        CapitalCityReport.topContinentN(a.con, "Europe", 5);
+        CapitalCityReport.topRegionN(a.con, "Central America", 5);
         a.disconnect();
     }
 }

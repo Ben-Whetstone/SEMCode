@@ -1,4 +1,4 @@
-name: A workflow for my Hello World App
+name: A workflow for my App
 on: push
 
 jobs:
@@ -15,18 +15,25 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+
+      - name: Unit Tests
+        run: mvn -Dtest=MyTest test
+
       - name: Setup database
         run: |
           docker network create --driver bridge se-methods
           docker build -t world-db ./db
-          docker run -d \--name db --network se-methods world-db
+          docker run -d --name db --network se-methods world-db
 
       - name: Build with Maven
         run: mvn package
+
       - name: Build
         run: docker build -t se_methods .
+
       - name: Run image
         run: docker run --network se-methods --name devopscontainer se_methods
+
       - name: view logs
         run: docker logs devopscontainer
 
