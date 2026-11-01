@@ -23,8 +23,31 @@ import com.napier.sem.PopulationReport;
  *
  */
 
+
+
+/**
+ * Integration tests for {@link App}
+ *
+ * Tests need a MySQL container with the world database
+ * published on localhost:33060. The tests check that {@link App} and
+ * the database work together, in addition to checking that the population
+ * reports etc run successfully.
+ */
 class MyTest
 {
+
+    /**
+     * Checks that {@link App} will open a connection to the world database.
+     */
+    @Test
+    void connectsToDatabase()
+    {
+        App app = new App();
+        app.connect();
+        assertNotNull(app.con);
+        app.disconnect();
+    }
+
 
     @Test
     void appCreateObject(){
