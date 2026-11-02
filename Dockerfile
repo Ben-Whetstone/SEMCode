@@ -1,4 +1,4 @@
 FROM amazoncorretto:17
 COPY ./target/semApp.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "semApp.jar"]
+ENTRYPOINT ["java", "-jar", "semApp.jar", "db:3306", "30000"]
