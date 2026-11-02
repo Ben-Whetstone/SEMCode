@@ -36,8 +36,8 @@ jobs:
       - name: Integration Tests
         run: |
           docker build -t database ./db 
-          docker run --name employees -dp 33060:3306 database
-          mvn -Dtest=com.napier.devops.AppIntegrationTest test
+          docker run --name world -dp 33060:3306 database
+          mvn -Dtest=com.napier.sem.AppIntegrationTest
           docker stop employees
           docker rm employees
           docker image rm database 
