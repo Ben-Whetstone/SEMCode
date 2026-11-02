@@ -1,15 +1,7 @@
+package com.napier.sem;
+
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-
-
-
-import com.napier.sem.App;
-import com.napier.sem.CapitalCityReport;
-import com.napier.sem.CityReport;
-import com.napier.sem.CountryReport;
-import com.napier.sem.LanguageReport;
-import com.napier.sem.PopulationQueries;
-import com.napier.sem.PopulationReport;
 /**
  * Unit tests for classes in com.napier.sem.
  *

@@ -17,6 +17,13 @@ package com.napier.sem;
 import java.sql.*;
 
 public class CapitalCityReport {
+
+    public static class City
+    {
+        public String name;
+        public String country;
+        public int population;
+    }
     //Connection - database connection passed in from App.
     public static void print(Connection con) {
         run(con, "Capital City Report: all capital cities in the world organised by population",

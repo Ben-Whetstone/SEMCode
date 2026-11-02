@@ -1,12 +1,12 @@
 package com.napier.sem;
-
+import java.util.ArrayList;
 import java.sql.*;
 
 public class App
 {
     public Connection con = null;
 
-    public void connect()
+    public void connect(String location, int delay)
     {
         try
         {
@@ -24,8 +24,8 @@ public class App
             System.out.println("Connecting to database...");
             try
             {
-                Thread.sleep(30000);
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                Thread.sleep(delay);
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -60,15 +60,26 @@ public class App
 
     public static void main(String[] args)
     {
-        App a = new App();
-        a.connect();
+        App app = new App();
+
+        if (args.length < 1)
+        {
+            app.connect("localhost:33060", 3000);
+        }
+        else
+        {
+            app.connect(args[0], Integer.parseInt(args[1]));
+        }
+
 
         //Calls CapitalCityReport class (located in CapitalCityReport.java)
-        CapitalCityReport.print(a.con);
 
-        CapitalCityReport.topWorldN(a.con, 5);
-        CapitalCityReport.topContinentN(a.con, "Europe", 5);
-        CapitalCityReport.topRegionN(a.con, "Central America", 5);
-        a.disconnect();
+        CapitalCityReport.print(app.con);
+
+        CapitalCityReport.topWorldN(app.con, 5);
+        CapitalCityReport.topContinentN(app.con, "Europe", 5);
+        CapitalCityReport.topRegionN(app.con, "Central America", 5);
+
+        app.disconnect();
     }
 }
