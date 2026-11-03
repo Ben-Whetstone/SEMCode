@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.sql.*;
+
 //A country report requires the following columns:
 
 // - Code.
@@ -10,8 +12,8 @@ package com.napier.sem;
 // - Capital.
 
 public class CountryReport {
-    public void CountriesLargeToSmall() {
-        
+    public void CountriesLargeToSmall(Connection con) {
+
     }
 
     public void CountriesInContinentLargeToSmall() {
