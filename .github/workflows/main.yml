@@ -3,7 +3,10 @@ on:
   push:
     branches:
       - master
-#
+
+permissions:
+  contents: write
+
 jobs:
   UnitTests:
     name: Unit Tests
