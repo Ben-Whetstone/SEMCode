@@ -1,9 +1,5 @@
 name: Build and testing SEMCode.
-on:
-  push:
-    branches:
-      - master
-      - develop
+on: push
 
 permissions:
   contents: write
