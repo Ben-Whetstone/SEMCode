@@ -5,6 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Integration tests for {@link App}
+ *
+ * Tests need a MySQL container with the world database
+ * published on localhost:33060. The tests check that {@link App} and
+ * the database work together, in addition to checking that the population
+ * reports etc run successfully...
+ */
+
 public class AppIntegrationTest
 {
     static App app;
