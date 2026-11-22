@@ -98,7 +98,7 @@ public class App
      * Prompts user to type number (validation if isn't valid i.e. number is 0 or empty etc.)
      *
      * @param in - Scanner for user input
-     * @return - number the user entered
+     * @return - number the user entered (-1 if no input available i.e. for GitHub actions to not fail)
      *
      */
 
@@ -108,6 +108,15 @@ public class App
 
         while (n < 1)
         {
+
+            //Allows GitHubactions to skip user input sections. If there is northing to read
+            if (!in.hasNextLine())
+            {
+                System.out.println();
+                System.out.println("No input available.");
+                return -1;
+            }
+
             System.out.print("Enter nmber of capital cities to display: ");
             try
             {
@@ -142,14 +151,17 @@ public class App
         //Create new object of App allowing use of connect() & disconnect()
         App app = new App();
 
-        if (args.length < 1)
-
+        //args = values passed when starting program (i.e. db:33060 = args[0]/30000 = args[1]
+        //args.length = how many values were passed)
+        if (args.length < 2)
 
         {
             app.connect("localhost:33060", 3000);
         }
         else
         {
+            //args[0] = db address
+            //args[1] = delay of connection
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
@@ -165,9 +177,18 @@ public class App
         int n = readUserInput(scanner);
 
         //Capital City Reports 4-6: user specifies a value, the value is used to determine amount of rows to print for each report
-        CapitalCityReport.topWorldN(app.con, n);
-        CapitalCityReport.topContinentN(app.con, "Europe", n);
-        CapitalCityReport.topRegionN(app.con, "Central America", n);
+        if (n > 0)
+        {
+            CapitalCityReport.topWorldN(app.con, n);
+            CapitalCityReport.topContinentN(app.con, "Europe", n);
+            CapitalCityReport.topRegionN(app.con, "Central America", n);
+        }
+        else
+        {
+            //n is -1 = no input, so skip the reports with user input (helps CI on GithubActions pass)
+            System.out.println("Skipping user input reports (no input available)");
+        }
+
 
         //Disconnect once reports are done
         app.disconnect();
