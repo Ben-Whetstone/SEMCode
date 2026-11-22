@@ -1,6 +1,9 @@
 package com.napier.sem;
 
 import org.junit.jupiter.api.*;
+
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for classes in com.napier.sem.
@@ -26,63 +29,29 @@ class MyTest
         assertNotNull(app);
     }
 
+    //Checks whether con (in App.java via .disconnect()) starts as null.
     @Test
-    void unitTest()
-    {
-        assertEquals(5,5);
+    void conStartsAsNull(){
+        App app = new App();
+        assertNull(app.con);
     }
 
-
-    // illustrates how we can add a message to a test.
+    //Tests whether user input is accepting a valid number as input
     @Test
-    void unitTest2()
+    void readUserInputAcceptsValidNum()
     {
-        assertEquals(5, 5, "Messages are equal");
+        Scanner in = new Scanner("5\n");
+        assertEquals(5, App.readUserInput(in));
     }
 
-    //illustrates how to test floating point values with an error range.
+    //Tests whether user input has whitespace trimmed correctly.
     @Test
-    void unitTest3()
+    void readUserInputTrimsWhitespace()
     {
-        assertEquals(5.0, 5.01, 0.02);
+        Scanner in = new Scanner("      5      \n");
+        assertEquals(5, App.readUserInput(in));
     }
 
-    //illustrates how to compare array contents in a test.
-    @Test
-    void unitTest4()
-    {
-        int[] a = {1, 2, 3};
-        int[] b = {1, 2, 3};
-        assertArrayEquals(a, b);
-    }
-
-    //illustrates how to test if a value is true.
-    @Test
-    void unitTest5()
-    {
-        assertTrue(5 == 5);
-    }
-
-    //illustrates how to test if a value is false.
-    @Test
-    void unitTest6()
-    {
-        assertFalse(5 == 4);
-    }
-
-    //illustrates how to test if a value is null.
-    @Test
-    void unitTest7()
-    {
-        assertNull(null);
-    }
-
-    //illustrates how to test if a value is not null.
-    @Test
-    void unitTest8()
-    {
-        assertNotNull("Hello");
-    }
 
     //illustrates how to test if a method throws an exception.
     //By default, any exception thrown fails a test if no assertThrows matches.
