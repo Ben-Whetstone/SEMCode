@@ -113,41 +113,7 @@ public class CityReport {
             System.out.println("Failed to get region city report details");
         }
     }
-    /**
-     * this method displays all the cities in the world in a chosen country organized in decending order by population, to use it, you must enter the con as the parameter or else it will not
-     * connect to the database, the con parameter is available in the App.Java file, you also must enter the country you wish to have it filter by, for example entering "Germany" would only
-     * display countries in that country,after that it will run. The method operates by creating an SQL statement and using a string to hold the query, and
-     * afterwards executes the SQL query and prints out the desired data in proper format, it also includes error handling.
-     * @param con connection to database
-     * @param country the name of the country which it filters by
-     */
-    public void cityreportcountry(Connection con, String country) { //All cities in a given country
-        try {
-            Statement stmt = con.createStatement();//create SQL statement
-            String strSelect =//create string that holds SQL query
-                    "SELECT city.Name, country.Name AS Country, city.District, city.Population "
-                            + "FROM city "
-                            + "JOIN country ON city.CountryCode = country.Code "
-                            + "WHERE country.Name = " + "'" + country + "'"
-                            + "ORDER BY city.Population DESC;";
 
-            ResultSet rset = stmt.executeQuery(strSelect);//execute SQL statement, rset holds the rows that the database sends back
-
-            System.out.println("City Population Report for: " + country);//print out header
-            System.out.println("Name / Country / District / Population");
-            while (rset.next()) {//use while loop to print out all the data
-                System.out.println(rset.getString("Name") + " " +
-                        rset.getString("Country") + " " +
-                        rset.getString("District") + " " +
-                        rset.getInt("Population")
-                );
-            }
-        }
-        catch (Exception e) {//display error message
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country city report details");
-        }
-    }
 
 
     public static void main(String[] args) {
